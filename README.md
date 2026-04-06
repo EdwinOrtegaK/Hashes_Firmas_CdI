@@ -9,3 +9,9 @@ R/ Entre los dos SHA-256 obtenidos para las cadenas "MediSoft-v2.1.0" y "medisof
 2. Con base en la longitud en bits, explica por qué MD5 es considerado inseguro para integridad de archivos.
 
 R/ MD5 es considerado inseguro para integridad de archivos porque genera solo 128 bits, por lo tanto ofrece una salida mucho menor como algoritmos modernos así como SHA-256, que produce 256 bits. Al tener una salida más corta, la probabilidad de colisiones entre hashes es mayor, siendo que sea más fácil encontrar dos archivos distintos que produzcan el mismo hash. Además MD5 tiene debilidades criptográficas conocidas y colisiones prácticas demostradas, donde un atacante puede manipular archivos sin que el cambio sea detectado.
+
+## Respuesta Parte 5 - Validar firma
+
+1. Al alterar los archivos ¿porque la firma es valida? y  ¿que sucede al ejecutar verificar_paquete.py?
+
+R/ La firma es válida porque fue generada sobre el archivo SHA256SUMS.txt, el cual no fue modificado en una de las pruebas. Aunque el archivo config.txt fue el alterado, el manifiesto firmado permanece intacto, por lo que la verificación con la clave pública sigue siendo correcta. Ahora bien al ejecutar verificar_paquete.py, el sistema detecta que el archivo config.txt fue modificado, ya que su hash SHA-256 actual no coincide con el registrado en SHA256SUMS.txt. Por lo tanto, se marca como [ALTERADO], mientras que los demás archivos permanecen correctos.
